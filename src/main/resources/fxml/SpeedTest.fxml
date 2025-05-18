@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hhwyz.controller.SpeedTestController"
+      spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="输入clashx订阅地址："/>
+        <TextField fx:id="subscriptionUrlField" prefWidth="400"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="startButton" text="开始测速" onAction="#startTest"/>
+        <ProgressBar fx:id="progressBar" progress="0.0" prefWidth="400"/>
+        <Label fx:id="statusLabel" text="就绪"/>
+    </HBox>
+
+    <TableView fx:id="resultsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="节点名称" prefWidth="200"/>
+            <TableColumn fx:id="typeColumn" text="类型" prefWidth="80"/>
+            <TableColumn fx:id="appleLatencyColumn" text="Apple延迟" prefWidth="100"/>
+            <TableColumn fx:id="cfLatencyColumn" text="CloudFlare延迟" prefWidth="100"/>
+            <TableColumn fx:id="googleLatencyColumn" text="Google延迟" prefWidth="100"/>
+            <TableColumn fx:id="avgLatencyColumn" text="平均延迟" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+</VBox>
