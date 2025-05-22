@@ -5,19 +5,21 @@ import javafx.beans.property.StringProperty;
 import java.util.Map;
 
 public class SpeedTestResult {
-    final String name;
-    final String type;
-    final String server;
-    final int port;
-    final Map<String, Long> latencies;
-    final double averageLatency;
+    private final String name;
+    private final String type;
+    private final String server;
+    private final int port;
+    private final Map<String, Long> latencies;
+    private final double averageLatency;
+    private final double downloadSpeed; // Mbps
 
-    public SpeedTestResult(String name, String type, String server, int port, Map<String, Long> latencies) {
+    public SpeedTestResult(String name, String type, String server, int port, Map<String, Long> latencies, double downloadSpeed) {
         this.name = name;
         this.type = type;
         this.server = server;
         this.port = port;
         this.latencies = latencies;
+        this.downloadSpeed = downloadSpeed;
         
         // 计算平均延迟，忽略超时的值
         long validCount = latencies.values().stream()
@@ -43,6 +45,14 @@ public class SpeedTestResult {
         return type;
     }
 
+    public double getAverageLatency() {
+        return averageLatency;
+    }
+
+    public double getDownloadSpeed() {
+        return downloadSpeed;
+    }
+
     private String formatLatency(Long latency) {
         if (latency == null || latency == Long.MAX_VALUE) {
             return "超时";
@@ -55,6 +65,10 @@ public class SpeedTestResult {
     }
     
     public StringProperty getAverageLatencyProperty() {
-        return new SimpleStringProperty(averageLatency == Long.MAX_VALUE ? "超时" : String.format("%.0fms", averageLatency));
+        return new SimpleStringProperty(averageLatency == Long.MAX_VALUE ? "超时" : String.format("%.0f ms", averageLatency));
+    }
+
+    public StringProperty getDownloadSpeedProperty() {
+        return new SimpleStringProperty(downloadSpeed == -1 ? "超时" : String.format("%.0f Kbps", downloadSpeed));
     }
 }

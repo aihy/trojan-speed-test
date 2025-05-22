@@ -2,7 +2,6 @@ package com.hhwyz.controller;
 
 import com.hhwyz.*;
 import com.hhwyz.model.SpeedTestModel;
-import com.hhwyz.model.SpeedTestResult;
 import com.hhwyz.util.ConfigUtil;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -29,6 +28,7 @@ public class SpeedTestController {
     @FXML private TableColumn<SpeedTestResult, String> cfLatencyColumn;
     @FXML private TableColumn<SpeedTestResult, String> googleLatencyColumn;
     @FXML private TableColumn<SpeedTestResult, String> avgLatencyColumn;
+    @FXML private TableColumn<SpeedTestResult, String> downloadSpeedColumn;
     @FXML private ProgressBar progressBar;
     @FXML private Label statusLabel;
     @FXML private Button startButton;
@@ -89,6 +89,8 @@ public class SpeedTestController {
             cellData.getValue().getLatencyProperty(SPEED_TEST_URLS.get(2)));
         avgLatencyColumn.setCellValueFactory(cellData -> 
             cellData.getValue().getAverageLatencyProperty());
+        downloadSpeedColumn.setCellValueFactory(cellData ->
+            cellData.getValue().getDownloadSpeedProperty());
             
         // 添加排序功能
         resultsTable.getSortOrder().add(avgLatencyColumn);

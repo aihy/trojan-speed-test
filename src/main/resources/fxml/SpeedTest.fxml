@@ -30,6 +30,7 @@
             <TableColumn fx:id="cfLatencyColumn" text="CloudFlare延迟" prefWidth="100"/>
             <TableColumn fx:id="googleLatencyColumn" text="Google延迟" prefWidth="100"/>
             <TableColumn fx:id="avgLatencyColumn" text="平均延迟" prefWidth="100"/>
+            <TableColumn fx:id="downloadSpeedColumn" text="下载速度" prefWidth="100"/>
         </columns>
     </TableView>
 
